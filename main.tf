@@ -154,7 +154,7 @@ data "archive_file" "source" {
 }
 
 resource "aws_lambda_function" "dashboard_lambda" {
-  filename         = "${substr(data.archive_file.source.output_path, 0, length(path.cwd)) == path.cwd ? substr(data.archive_file.source.output_path, length(path.cwd) + 1, -1) : data.archive_file.source.output_path}"
+  filename         = substr(data.archive_file.source.output_path, 0, length(path.cwd)) == path.cwd ? substr(data.archive_file.source.output_path, length(path.cwd) + 1, -1) : data.archive_file.source.output_path
   function_name    = "publish_ses_dashboard"
   role             = aws_iam_role.dashboard_role.arn
   handler          = "index.handler"
@@ -195,5 +195,5 @@ resource "aws_lambda_permission" "allow-cloudwatch-to-run-generate-dashboard-lam
 resource "aws_cloudwatch_event_target" "generate-dashboard-scheduled-event-target" {
   rule      = aws_cloudwatch_event_rule.generate_dashboard.name
   target_id = "generate-email-dashboard-target"
-  arn       = "${aws_lambda_function.dashboard_lambda.arn}"
+  arn       = aws_lambda_function.dashboard_lambda.arn
 }
