@@ -1,5 +1,5 @@
 variable "to_addresses" {
-  type        = "list"
+  type        = list
   description = "[Required] The email addresses that will receive the bounce and complaint report."
 }
 

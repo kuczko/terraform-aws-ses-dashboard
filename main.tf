@@ -23,7 +23,7 @@ resource "aws_sqs_queue" "email_delivery_queue" {
   "Id": "arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.queue_name}/SQSDefaultPolicy",
   "Statement": [
     {
-      "Sid": var.queue_name,
+      "Sid": "${var.queue_name}",
       "Effect": "Allow",
       "Principal": {
         "AWS": "*"
@@ -62,7 +62,7 @@ resource "aws_s3_bucket" "dashboard_bucket" {
     }
   }
 
-  tags = "${merge(var.tags, map("Name", "Email Delivery Dashboard"))}"
+  tags = merge(var.tags, map("Name", "Email Delivery Dashboard"))
 }
 
 resource "aws_iam_policy" "email_delivery_dashboard_policy" {
