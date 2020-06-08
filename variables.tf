@@ -47,3 +47,5 @@ variable "email_dashboard_name" {
   default     = "email-delivery-dashboard-email-recipient"
   description = "Name of cloudformation stack"
 }
+
+variable "dashboard_policy_name" {}

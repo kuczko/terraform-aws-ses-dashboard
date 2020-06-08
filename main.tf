@@ -66,7 +66,7 @@ resource "aws_s3_bucket" "dashboard_bucket" {
 }
 
 resource "aws_iam_policy" "email_delivery_dashboard_policy" {
-  name        = "email-delivery-dashboard-policy"
+  name        = var.dashboard_policy_name
   description = "Permissions for Email Delivery Dashboard"
 
   policy = <<EOF
