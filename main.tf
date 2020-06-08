@@ -123,7 +123,7 @@ EOF
 }
 
 resource "aws_iam_role" "dashboard_role" {
-  name = "email-delivery-dashboard-role"
+  name = "${var.email_dashboard_name}-role"
 
   assume_role_policy = <<EOF
 {
