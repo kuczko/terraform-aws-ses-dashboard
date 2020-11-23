@@ -179,7 +179,7 @@ resource "aws_lambda_function" "dashboard_lambda" {
 }
 
 resource "aws_cloudwatch_event_rule" "generate_dashboard" {
-  name                = "generate_email_dashboard"
+  name                = "${var.email_dashboard_name}-rule"
   description         = "MANAGED BY TERRAFORM"
   schedule_expression = "cron(0 4 * * ? *)"
 }
